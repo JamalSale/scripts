@@ -1,0 +1,1 @@
+ du -sh /opt/kafka_data/kafka-logs/* | sort -nr | awk -F"-[0-9]" '{print $1}' | egrep "[0-9],[0-9]G" | awk -F"G" '{print $1,$2}' | sort | uniq -c | sed -r 's/,/./g' | awk -F" " '{print (($1 * $2)) "Gb ", $3}'
